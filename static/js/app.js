@@ -98,7 +98,7 @@ function init() {
         for(var i = 0; i < microbial_samples.sample_values.length; i++) {
             all_sample_values.push(microbial_samples.sample_values[i]);
         };
-        
+
         // verifying the list was correctly created.
         console.log("All Sample Values:", all_sample_values);
         
@@ -145,6 +145,45 @@ function init() {
             var cell = panel.append('p');
             cell.text(`${dict_keys[i]}: ${general_data[dict_keys[i]]}`);
         };
+// ------------------------------------------------------------------------------------------------------------------
+        // creating the gauge graph.
+
+        // setting the frequency of belly button washing to a variable
+        var wfreq = general_data['wfreq']
+
+        // verifying the above process worked.
+        console.log(wfreq)
+
+        // creating the guage graph with its parameters.
+        var data = [
+            {
+                domain: { x: [0, 1], y: [0, 1] },
+                value: wfreq,
+                title: { text: "Belly Button Washing Frequency Scrubs per Week" },
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: {
+                  axis: { range: [0, 9] },
+                  steps: [
+                    { range: [0, 1], color: "lavender"},
+                    { range: [1, 2], color: "lightsteelblue" },
+                    { range: [2, 3], color: "cornflowerblue" },
+                    { range: [3, 4], color: "royalblue" },
+                    { range: [4, 5], color: "blue" },
+                    { range: [5, 6], color: "mediumblue" },
+                    { range: [6, 7], color: "darkblue" },
+                    { range: [7, 8], color: "midnightblue" },
+                    { range: [8, 9], color: "black" },
+                  ],
+                },
+            },
+        ];
+
+        // creating the general layout of guage graph.
+        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 }};
+        
+        // ploting the guage graph based on above parameters.
+        Plotly.newPlot('gauge', data, layout);
     });
 };
 // -------------------------------------------------------------------------------------------------------------------
@@ -344,10 +383,50 @@ function handleChange() {
             var cell = panel.append('p');
             cell.text(`${dict_keys[i]}: ${general_data[dict_keys[i]]}`);
         };
+// -------------------------------------------------------------------------------------------------------------------------
+        // creating the gauge graph.
+
+        // setting the frequency of belly button washing to a variable
+        var wfreq = general_data['wfreq']
+
+        // verifying the above process worked.
+        console.log(wfreq)
+
+        // creating the guage graph with its parameters.
+        var data = [
+            {
+                domain: { x: [0, 1], y: [0, 1] },
+                value: wfreq,
+                title: { text: "Belly Button Washing Frequency Scrubs per Week" },
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: {
+                  axis: { range: [0, 9] },
+                  steps: [
+                    { range: [0, 1], color: "lavender"},
+                    { range: [1, 2], color: "lightsteelblue" },
+                    { range: [2, 3], color: "cornflowerblue" },
+                    { range: [3, 4], color: "royalblue" },
+                    { range: [4, 5], color: "blue" },
+                    { range: [5, 6], color: "mediumblue" },
+                    { range: [6, 7], color: "darkblue" },
+                    { range: [7, 8], color: "midnightblue" },
+                    { range: [8, 9], color: "black" },
+                  ],
+                },
+            },
+        ];
+
+        // creating the general layout of guage graph.
+        var layout = { width: 600, height: 500, margin: { t: 0, b: 0 }};
+        
+        // ploting the guage graph based on above parameters.
+        Plotly.newPlot('gauge', data, layout);
     });
 };
 
 // ----------------------------------------------------------------------------------------------------------------------
+
 // saving element to variable to create a handlechange.
 var button = d3.select('#selDataset');
 
